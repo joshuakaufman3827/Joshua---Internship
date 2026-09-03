@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 // Swiper imports
@@ -9,19 +9,23 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
-
-const items = [1, 2, 3, 4, 5, 6];
-
 const HotCollections = () => {
+  const [collections, setCollections] = useState([]);
   let scrollInterval = null;
+
+  // Fetch Hot Collections from your API
+  useEffect(() => {
+    fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
+      .then((res) => res.json())
+      .then((data) => setCollections(data))
+      .catch((err) => console.error("Error fetching collections:", err));
+  }, []);
 
   const startScrollNext = (swiper) => {
     swiper.slideNext();
     scrollInterval = setInterval(() => {
       swiper.slideNext();
-    }, 300); // smooth continuous scroll speed
+    }, 300);
   };
 
   const startScrollPrev = (swiper) => {
@@ -58,11 +62,10 @@ const HotCollections = () => {
             prevEl: ".swiper-button-prev",
           }}
           loop={true}
-          slidesPerView={4}
+          slidesPerView={4}   // ← 4 cards visible
           spaceBetween={30}
           grabCursor={true}
           onSwiper={(swiper) => {
-            // attach hold-to-scroll behavior to arrows
             const nextBtn = document.querySelector(".swiper-button-next");
             const prevBtn = document.querySelector(".swiper-button-prev");
 
@@ -75,25 +78,25 @@ const HotCollections = () => {
             prevBtn.onmouseleave = stopScroll;
           }}
         >
-          {items.map((i) => (
-            <SwiperSlide key={i}>
+          {collections.map((item) => (
+            <SwiperSlide key={item.id}>
               <div className="nft_coll">
                 <div className="nft_wrap">
-                  <Link to="/item-details">
+                  <Link to={`/item-details/${item.id}`}>
                     <img
-                      src={nftImage}
+                      src={item.nftImage}
                       className="lazy img-fluid"
-                      alt=""
+                      alt={item.name}
                     />
                   </Link>
                 </div>
 
                 <div className="nft_coll_pp">
-                  <Link to="/author">
+                  <Link to={`/author/${item.authorId}`}>
                     <img
                       className="lazy pp-coll"
-                      src={AuthorImage}
-                      alt=""
+                      src={item.authorImage}
+                      alt={item.author}
                     />
                   </Link>
                   <i className="fa fa-check"></i>
@@ -101,9 +104,9 @@ const HotCollections = () => {
 
                 <div className="nft_coll_info">
                   <Link to="/explore">
-                    <h4>Collection {i}</h4>
+                    <h4>{item.name}</h4>
                   </Link>
-                  <span>ERC-{100 + i}</span>
+                  <span>{item.erc}</span>
                 </div>
               </div>
             </SwiperSlide>
@@ -120,6 +123,7 @@ const HotCollections = () => {
 };
 
 export default HotCollections;
+
 
 
 
