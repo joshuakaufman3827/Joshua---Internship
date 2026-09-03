@@ -11,17 +11,52 @@
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
 
-/* Force carousel arrows to always be visible */
-.carousel .control-arrow {
-  opacity: 1 !important;
-  visibility: visible !important;
+/* Remove Slick's default arrow icons */
+.slick-prev:before,
+.slick-next:before {
+  content: "" !important;
+  display: none !important;
 }
 
-.carousel .control-prev.control-arrow,
-.carousel .control-next.control-arrow {
-  opacity: 1 !important;
+/* Arrow buttons */
+.slick-arrow {
+  width: 45px !important;
+  height: 45px !important;
+  background: #fff !important;      /* white circle */
+  border-radius: 50%;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000 !important;
 }
 
-.carousel .control-arrow:hover {
-  opacity: 1 !important;
+/* Arrow icons */
+.slick-arrow i {
+  color: #000 !important;           /* black arrow */
+  font-size: 22px !important;
 }
+
+/* Position arrows OVER the images */
+.slick-prev {
+  left: -20px !important;
+}
+
+.slick-next {
+  right: -20px !important;
+}
+
+.slick-arrow {
+  width: 45px !important;
+  height: 45px !important;
+  background: #fff !important;      /* white circle */
+  border-radius: 50%;
+  border: 1px solid #000 !important; /* thin black border */
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000 !important;
+}
+
+
