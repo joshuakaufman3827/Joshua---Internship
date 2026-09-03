@@ -10,3 +10,18 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+/* Force carousel arrows to always be visible */
+.carousel .control-arrow {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.carousel .control-prev.control-arrow,
+.carousel .control-next.control-arrow {
+  opacity: 1 !important;
+}
+
+.carousel .control-arrow:hover {
+  opacity: 1 !important;
+}
