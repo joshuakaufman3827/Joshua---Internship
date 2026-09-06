@@ -115,6 +115,146 @@
   margin: 0 auto !important;
 }
 
+/* ===== New Items / HotCollections overrides (append to index.css) ===== */
+
+/* allow arrows to sit outside the track */
+.slick-list { overflow: visible !important; }
+
+/* arrows */
+.slick-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px !important;
+  height: 44px !important;
+  background: #fff !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(0,0,0,0.08) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 1200 !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+.slick-prev { left: -22px !important; }
+.slick-next { right: -22px !important; }
+.slick-arrow i { color: #222; font-size: 20px; }
+
+/* keep slides equal height to avoid layout jumps */
+.slick-slide { display:flex; align-items:stretch; height:100%; }
+
+/* image sizing and cover behavior */
+.nft_wrap img,
+.nft__item_wrap img.nft__item_preview,
+.nft__item img.lazy {
+  width: 100% !important;
+  height: 180px !important;
+  object-fit: cover !important;
+  display: block !important;
+  border-radius: 8px;
+}
+
+/* author avatar */
+.author_list_pp img.lazy,
+.nft_coll_pp img.pp-coll {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* skeleton placeholders that match the real DOM */
+.nft__item.skeleton,
+.nft_coll.skeleton { background: transparent; padding: 12px; box-sizing: border-box; }
+.skeleton-img { width: 100%; height: 180px; background: #e6e6e6; border-radius: 8px; }
+.skeleton-avatar { width: 48px; height: 48px; border-radius: 50%; background: #ddd; display: inline-block; }
+.skeleton-check { width: 18px; height: 18px; border-radius: 50%; background: #d0d0d0; display: inline-block; margin-left: 8px; vertical-align: middle; }
+.skeleton-line { height: 12px; background: #e6e6e6; margin-top: 8px; border-radius: 6px; }
+.skeleton-line.short { width: 40%; }
+.skeleton-line.long { width: 70%; }
+.skeleton-line.tiny { width: 20%; height: 10px; margin-top: 6px; }
+
+/* countdown and ETH row */
+.de_countdown { font-weight: 600; color: #333; margin: 8px 0; }
+.eth-card { padding: 12px; background: #f8f8f8; border-radius: 8px; }
+.eth-value { font-weight: 600; padding: 20px 0; }
+
+/* check icon color (compatibility with FA4/FA5) */
+.fa-check, .fa-solid.fa-check, .fas.fa-check { color: #7b61ff; margin-left: 6px; }
+
+/* Slider wrapper must be positioned so arrows align correctly */
+.slider-wrapper { position: relative; }
+
+/* Ensure arrows sit inside the wrapper and are clickable */
+.slider-wrapper .slick-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1200;
+  width: 44px !important;
+  height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+/* Slightly move arrows outward so they don't overlap content */
+.slider-wrapper .slick-prev { left: -22px !important; }
+.slider-wrapper .slick-next { right: -22px !important; }
+
+/* Make each slide stretch to same height to avoid layout jumps */
+.slider-wrapper .slick-slide { display:flex; align-items:stretch; height:100%; }
+
+/* Optional slide padding class to keep spacing consistent */
+.slide-item { padding: 0 8px; box-sizing: border-box; }
+
+/* Ensure images are fixed height and cover so slides don't resize */
+.nft__item_wrap img.nft__item_preview,
+.nft_wrap img,
+.nft__item img.lazy {
+  width: 100% !important;
+  height: 180px !important;
+  object-fit: cover !important;
+  display: block !important;
+  border-radius: 8px;
+}
+
+/* FIX SLICK LAYOUT FOR NEW ITEMS */
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.slider-wrapper .slick-slide {
+  display: block !important;   /* override flex */
+  height: auto !important;
+}
+
+.slider-wrapper .slick-track {
+  display: flex !important;
+}
+
+.slider-wrapper .slick-slide > div {
+  height: 100%;
+}
+
+.slick-arrow {
+  z-index: 2000 !important;
+}
+
+.slick-prev { left: -15px !important; }
+.slick-next { right: -15px !important; }
+
+/* FIX IMAGE HEIGHT */
+.nft__item_preview {
+  height: 250px !important;
+  object-fit: cover !important;
+}
+
+
+
+
 
 
 
