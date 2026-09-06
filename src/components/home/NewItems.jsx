@@ -36,7 +36,6 @@ function Countdown({ end }) {
   );
 
   function calc(endTs) {
-    if (!endTs) return null;
     const ts = Date.parse(endTs);
     if (isNaN(ts)) return null;
 
@@ -66,10 +65,9 @@ const NewItems = () => {
 
         const mapped = raw.map((d) => ({
           id: d.id,
-          nftId: d.id,
+          title: d.title,
           nftImage: d.nftImage,
           authorImage: d.authorImage,
-          title: d.title,
           eth: d.price,
           likes: d.likes,
           endsAt: d.expiry,
@@ -171,4 +169,6 @@ const NewItems = () => {
 };
 
 export default NewItems;
+
+
 
