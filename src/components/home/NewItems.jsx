@@ -1,38 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-import SkeletonCollection from "./SkeletonCollection";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+// 1. SAFE PRESS-AND-HOLD CUSTOM ARROWS
 const NextArrow = ({ onClick }) => {
-  const intervalRef = React.useRef(null);
+  const timerRef = useRef(null);
 
-  const startScrolling = (e) => {
-    e.preventDefault();
-    onClick(); // Trigger immediate slide
-    intervalRef.current = setInterval(() => {
-      onClick();
-    }, 200); // Adjust millisecond speed for hold-to-scroll rate
+  const startHold = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      if (onClick) onClick();
+    }, 150);
   };
 
-  const stopScrolling = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
+  const stopHold = () => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
     }
   };
 
   return (
     <button
+      type="button"
       className="slick-arrow slick-next"
-      onMouseDown={startScrolling}
-      onMouseUp={stopScrolling}
-      onMouseLeave={stopScrolling}
-      onTouchStart={startScrolling}
-      onTouchEnd={stopScrolling}
-      onClick={(e) => e.preventDefault()} // Handled via mousedown
+      onMouseDown={startHold}
+      onMouseUp={stopHold}
+      onMouseLeave={stopHold}
+      onTouchStart={startHold}
+      onTouchEnd={stopHold}
+      onClick={onClick}
     >
       <i className="fa fa-angle-right" />
     </button>
@@ -40,38 +40,39 @@ const NextArrow = ({ onClick }) => {
 };
 
 const PrevArrow = ({ onClick }) => {
-  const intervalRef = React.useRef(null);
+  const timerRef = useRef(null);
 
-  const startScrolling = (e) => {
-    e.preventDefault();
-    onClick();
-    intervalRef.current = setInterval(() => {
-      onClick();
-    }, 200);
+  const startHold = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      if (onClick) onClick();
+    }, 150);
   };
 
-  const stopScrolling = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
+  const stopHold = () => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
     }
   };
 
   return (
     <button
+      type="button"
       className="slick-arrow slick-prev"
-      onMouseDown={startScrolling}
-      onMouseUp={stopScrolling}
-      onMouseLeave={stopScrolling}
-      onTouchStart={startScrolling}
-      onTouchEnd={stopScrolling}
-      onClick={(e) => e.preventDefault()}
+      onMouseDown={startHold}
+      onMouseUp={stopHold}
+      onMouseLeave={stopHold}
+      onTouchStart={startHold}
+      onTouchEnd={stopHold}
+      onClick={onClick}
     >
       <i className="fa fa-angle-left" />
     </button>
   );
 };
 
+// 2. COUNTDOWN TIMER COMPONENT
 const Countdown = React.memo(function Countdown({ end }) {
   const [timeLeft, setTimeLeft] = useState(() => calc(end));
 
@@ -119,11 +120,30 @@ function calc(endTs) {
   };
 }
 
+// 3. SKELETON PLACEHOLDER COMPONENT
+const SkeletonCard = () => (
+  <div className="nft__item">
+    <div className="author_list_pp">
+      <div className="skeleton-avatar" />
+    </div>
+    <div className="nft__item_wrap">
+      <div className="skeleton-box" />
+    </div>
+    <div className="nft__item_info">
+      <div className="skeleton-text title" />
+      <div className="skeleton-text code" />
+    </div>
+  </div>
+);
+
+// MAIN NEWITEMS COMPONENT
 const NewItems = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let isMounted = true;
+
     const load = async () => {
       try {
         const res = await fetch(
@@ -132,13 +152,10 @@ const NewItems = () => {
         const raw = await res.json();
 
         const mapped = raw.map((d) => {
-          // Extract the item ID accurately for routing
           const itemId = d.nftId ?? d.id ?? d.itemId;
 
-          // Extract and normalize expiry timestamps
           let endsAt = null;
           if (d.expiryDate) {
-            // If the expiryDate from the API is already in the past, add an offset so it counts down live
             endsAt = d.expiryDate > Date.now() ? d.expiryDate : Date.now() + 10000000;
           }
 
@@ -154,26 +171,35 @@ const NewItems = () => {
           };
         });
 
-        setItems(mapped);
+        // Delay 1.5 seconds safely to display skeleton shimmers
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+
+        if (isMounted) {
+          setItems(mapped);
+          setLoading(false);
+        }
       } catch (err) {
         console.error("NewItems fetch error:", err);
-      } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
     load();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
- const settings = {
+  const settings = {
     infinite: true,
     slidesToShow: 4,
     slidesToScroll: 1,
     speed: 300,
     arrows: true,
     swipeToSlide: true,
-    autoplay: false, // Default state
-    pauseOnHover: false,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
@@ -197,7 +223,7 @@ const NewItems = () => {
           <div className="row">
             {[0, 1, 2, 3].map((i) => (
               <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={i}>
-                <SkeletonCollection />
+                <SkeletonCard />
               </div>
             ))}
           </div>
@@ -211,15 +237,15 @@ const NewItems = () => {
                       <div className="slide-item">
                         <div className="nft__item">
                           <div className="author_list_pp">
-                            <Link to={`/author/${it.authorId}`}>
-                              <img
-                                className="lazy"
-                                src={it.authorImage}
-                                alt=""
-                              />
-                              <i className="fa fa-check" />
-                            </Link>
-                          </div>
+  <Link to={`/author/${it.authorId}`}>
+    <img
+      className="lazy"
+      src={it.authorImage}
+      alt=""
+    />
+    <i className="fa fa-check" />
+  </Link>
+</div>
 
                           {it.endsAt ? <Countdown end={it.endsAt} /> : null}
 
@@ -260,7 +286,6 @@ const NewItems = () => {
 };
 
 export default NewItems;
-
 
 
 
