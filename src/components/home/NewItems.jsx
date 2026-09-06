@@ -5,7 +5,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-// 1. SAFE PRESS-AND-HOLD CUSTOM ARROWS
+
 const NextArrow = ({ onClick }) => {
   const timerRef = useRef(null);
 
@@ -72,7 +72,7 @@ const PrevArrow = ({ onClick }) => {
   );
 };
 
-// 2. COUNTDOWN TIMER COMPONENT
+
 const Countdown = React.memo(function Countdown({ end }) {
   const [timeLeft, setTimeLeft] = useState(() => calc(end));
 
@@ -120,7 +120,7 @@ function calc(endTs) {
   };
 }
 
-// 3. SKELETON PLACEHOLDER COMPONENT
+
 const SkeletonCard = () => (
   <div className="nft__item">
     <div className="author_list_pp">
@@ -136,7 +136,7 @@ const SkeletonCard = () => (
   </div>
 );
 
-// MAIN NEWITEMS COMPONENT
+
 const NewItems = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -171,7 +171,7 @@ const NewItems = () => {
           };
         });
 
-        // Delay 1.5 seconds safely to display skeleton shimmers
+
         await new Promise((resolve) => setTimeout(resolve, 1500));
 
         if (isMounted) {
