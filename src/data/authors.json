@@ -1,0 +1,212 @@
+[
+  {
+    "authorId": 1,
+    "authorName": "Monica Lucas",
+    "authorImage": "./img/authors/author-1.jpg",
+    "authorBanner": "./img/banners/banner-1.jpg",
+    "authorUsername": "monicalucas",
+    "authorWallet": "0xA1B2C3D4E5F6",
+    "authorFollowers": 12800,
+    "nfts": [
+      {
+        "id": 101,
+        "title": "Cosmic Dreams",
+        "image": "./img/items/item-1.jpg",
+        "price": 1.2
+      },
+      {
+        "id": 102,
+        "title": "Neon Pulse",
+        "image": "./img/items/item-2.jpg",
+        "price": 2.1
+      }
+    ]
+  },
+  {
+    "authorId": 2,
+    "authorName": "Lori Hart",
+    "authorImage": "./img/authors/author-2.jpg",
+    "authorBanner": "./img/banners/banner-2.jpg",
+    "authorUsername": "lorihart",
+    "authorWallet": "0xF6E5D4C3B2A1",
+    "authorFollowers": 9400,
+    "nfts": [
+      {
+        "id": 201,
+        "title": "Crystal Horizon",
+        "image": "./img/items/item-3.jpg",
+        "price": 7.2
+      }
+    ]
+  },
+  {
+    "authorId": 3,
+    "authorName": "Gayle Hicks",
+    "authorImage": "./img/authors/author-3.jpg",
+    "authorBanner": "./img/banners/banner-3.jpg",
+    "authorUsername": "gaylehicks",
+    "authorWallet": "0x123456789ABC",
+    "authorFollowers": 5600,
+    "nfts": [
+      {
+        "id": 301,
+        "title": "Silent Echo",
+        "image": "./img/items/item-4.jpg",
+        "price": 2.7
+      }
+    ]
+  },
+  {
+    "authorId": 4,
+    "authorName": "Stacy Long",
+    "authorImage": "./img/authors/author-4.jpg",
+    "authorBanner": "./img/banners/banner-4.jpg",
+    "authorUsername": "stacylong",
+    "authorWallet": "0xABCDEF123456",
+    "authorFollowers": 7200,
+    "nfts": [
+      {
+        "id": 401,
+        "title": "Digital Bloom",
+        "image": "./img/items/item-5.jpg",
+        "price": 1.3
+      }
+    ]
+  },
+  {
+    "authorId": 5,
+    "authorName": "Franklin Price",
+    "authorImage": "./img/authors/author-5.jpg",
+    "authorBanner": "./img/banners/banner-5.jpg",
+    "authorUsername": "frankprice",
+    "authorWallet": "0x998877665544",
+    "authorFollowers": 8800,
+    "nfts": [
+      {
+        "id": 501,
+        "title": "Solar Drift",
+        "image": "./img/items/item-6.jpg",
+        "price": 3.4
+      }
+    ]
+  },
+  {
+    "authorId": 6,
+    "authorName": "Cynthia Gomez",
+    "authorImage": "./img/authors/author-6.jpg",
+    "authorBanner": "./img/banners/banner-6.jpg",
+    "authorUsername": "cynthiag",
+    "authorWallet": "0x556677889900",
+    "authorFollowers": 10400,
+    "nfts": [
+      {
+        "id": 601,
+        "title": "Quantum Field",
+        "image": "./img/items/item-7.jpg",
+        "price": 4.1
+      }
+    ]
+  },
+  {
+    "authorId": 7,
+    "authorName": "Derek Shaw",
+    "authorImage": "./img/authors/author-7.jpg",
+    "authorBanner": "./img/banners/banner-7.jpg",
+    "authorUsername": "derekshaw",
+    "authorWallet": "0xAABBCCDDEEFF",
+    "authorFollowers": 7600,
+    "nfts": [
+      {
+        "id": 701,
+        "title": "Binary Pulse",
+        "image": "./img/items/item-8.jpg",
+        "price": 2.9
+      }
+    ]
+  },
+  {
+    "authorId": 8,
+    "authorName": "Hannah Lee",
+    "authorImage": "./img/authors/author-8.jpg",
+    "authorBanner": "./img/banners/banner-8.jpg",
+    "authorUsername": "hannahlee",
+    "authorWallet": "0x112233445566",
+    "authorFollowers": 15000,
+    "nfts": [
+      {
+        "id": 801,
+        "title": "Aurora Path",
+        "image": "./img/items/item-9.jpg",
+        "price": 5.0
+      }
+    ]
+  },
+  {
+    "authorId": 9,
+    "authorName": "Jason Wu",
+    "authorImage": "./img/authors/author-9.jpg",
+    "authorBanner": "./img/banners/banner-9.jpg",
+    "authorUsername": "jasonwu",
+    "authorWallet": "0xCAFEBABE1234",
+    "authorFollowers": 6700,
+    "nfts": [
+      {
+        "id": 901,
+        "title": "Nebula Shift",
+        "image": "./img/items/item-10.jpg",
+        "price": 3.8
+      }
+    ]
+  },
+  {
+    "authorId": 10,
+    "authorName": "Olivia Perez",
+    "authorImage": "./img/authors/author-10.jpg",
+    "authorBanner": "./img/banners/banner-10.jpg",
+    "authorUsername": "oliviap",
+    "authorWallet": "0xFACEFEED9876",
+    "authorFollowers": 9200,
+    "nfts": [
+      {
+        "id": 1001,
+        "title": "Eternal Wave",
+        "image": "./img/items/item-11.jpg",
+        "price": 6.2
+      }
+    ]
+  },
+  {
+    "authorId": 11,
+    "authorName": "Robert King",
+    "authorImage": "./img/authors/author-11.jpg",
+    "authorBanner": "./img/banners/banner-11.jpg",
+    "authorUsername": "robking",
+    "authorWallet": "0xDEADBEEF0001",
+    "authorFollowers": 5400,
+    "nfts": [
+      {
+        "id": 1101,
+        "title": "Silent Storm",
+        "image": "./img/items/item-12.jpg",
+        "price": 1.9
+      }
+    ]
+  },
+  {
+    "authorId": 12,
+    "authorName": "Tina Brooks",
+    "authorImage": "./img/authors/author-12.jpg",
+    "authorBanner": "./img/banners/banner-12.jpg",
+    "authorUsername": "tinabrooks",
+    "authorWallet": "0xBEEFBEEF2020",
+    "authorFollowers": 11300,
+    "nfts": [
+      {
+        "id": 1201,
+        "title": "Digital Mirage",
+        "image": "./img/items/item-13.jpg",
+        "price": 4.7
+      }
+    ]
+  }
+]
