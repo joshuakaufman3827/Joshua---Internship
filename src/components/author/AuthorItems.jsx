@@ -11,14 +11,6 @@ const AuthorItems = ({ items }) => {
       {items.map((item) => (
         <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={item.id}>
           <div className="nft__item">
-            <div className="de_countdown"></div>
-
-            <div className="author_list_pp">
-              <span>
-                <img className="lazy" src={item.image} alt={item.title} />
-              </span>
-            </div>
-
             <div className="nft__item_wrap">
               <Link to={`/item/${item.id}`}>
                 <img
@@ -33,6 +25,7 @@ const AuthorItems = ({ items }) => {
               <Link to={`/item/${item.id}`}>
                 <h4>{item.title}</h4>
               </Link>
+
               <div className="nft__item_price">
                 {item.price} ETH
               </div>
@@ -45,4 +38,5 @@ const AuthorItems = ({ items }) => {
 };
 
 export default AuthorItems;
+
 
