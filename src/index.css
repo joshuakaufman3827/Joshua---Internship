@@ -269,6 +269,14 @@
   margin: 0 !important;
 }
 
+.author-error {
+  min-height: 100pvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 
 
 

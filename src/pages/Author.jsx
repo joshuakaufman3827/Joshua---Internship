@@ -12,6 +12,7 @@ const Author = () => {
       (a) => a.authorId.toString() === id.toString()
     );
     setAuthor(found || null);
+
   }, [id]);
 
   if (!author)
