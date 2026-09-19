@@ -258,14 +258,14 @@
   right: 0;
   width: 15px;
   height: 15px;
-  background-color: #8364e2 !important; /* Solid purple background */
+  background-color: #8364e2 !important; 
   color: #fff !important;
   font-size: 8px;
   border-radius: 50%;
   display: flex !important;
   align-items: center;
   justify-content: center;
-  border: none !important; /* Border removed */
+  border: none !important; 
   margin: 0 !important;
 }
 
@@ -274,7 +274,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-Direction: column;
 }
 
 
