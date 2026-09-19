@@ -37,13 +37,14 @@ const ExploreItems = () => {
           <div className="nft__item">
             <div className="author_list_pp">
               <Link
-                to="/author"
-                data-bs-toggle="tooltip"
-                data-bs-placement="top"
-              >
-                <img className="lazy" src={item.authorImage} alt={item.author} />
-                <i className="fa fa-check"></i>
-              </Link>
+  to={`/author/${item.authorId}`}
+  data-bs-toggle="tooltip"
+  data-bs-placement="top"
+>
+  <img className="lazy" src={item.authorImage} alt={item.author} />
+  <i className="fa fa-check"></i>
+</Link>
+
             </div>
 
             <div className="de_countdown">{item.expiryDate}</div>
