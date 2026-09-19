@@ -116,17 +116,20 @@ async function fetchAuthor() {
                       <div className="profile_avatar">
                         <img src={author.authorImage} alt={author.authorName} />
                         <i className="fa fa-check"></i>
-                        <div className="profile_name"></div>
-                        <h4>
+
+                        <div className="profile_name">
+                         <h4>
                           {author.authorName}
-                          <span className="profile_username">Loading...</span>
+                          <span className="profile_username">
+                            @{author.address}
+                          </span>
 
                           <span id="wallet" className="profile_wallet">
-                            Loading...
+                            {author.address}
                           </span>
 
                           <button id="btn_copy" title="Copy Text">
-                            Loading...
+                            Copy
                           </button>
                         </h4>
                       </div>
@@ -135,7 +138,9 @@ async function fetchAuthor() {
 
                   <div className="profile_follow deflex">
                     <div className="de-flex-col">
-                      <div className="profile_followers">Loading...</div>
+                      <div className="profile_follower">
+                        {author.followers} followers
+                      </div>
                       <Link to ="#" className="btn-main">
                         Follow
                       </Link>
@@ -143,53 +148,20 @@ async function fetchAuthor() {
                     </div>
                   </div>
                )}
+               </div>
 
-                          }></Loading>
-                        </spam>
-                      </h4>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-      </div>
+               <div className="col-md-12">
+                <div className="de_tab tab_simple">
+                  <AuthorItems items={authorItems} loading={loading} />
+                </div>
+               </div>
+              </div>
+             </div>
+            </secton>
+          );
+         };
 
-  )
-// if (!author)
-//return (
-//   <div 
-// className="container text-center")
-//   style={{
-//     minHeight: "100vh",
-//     display: "flex",
-//     justifyContent: "center",
-//     alignItems: "center",
-//     flexDirection: "column",
-//   }};
-// );
-
-return {
-  <div id="wrapper">
-    <div className="no-bottom no-top" id="content">
-      <section
-        id="profile_banner"
-        className="text-light"
-        style={{ background: `url(${AuthorBanner}) top` }}
-      ></section>
-
-return (
-<section aria-label="section">
-  <div className="container">
-    <div className="row"> 
-      <div ClassName="col-md-12">
-        <div className="d_profile de-flex">
-          <div className="de-flex-col"> 
-     style={{ background: `url(${AuthorBanner}) top` }}
-    ></section>
-
-
-
-                    
+         
 export default Author;
 
 
