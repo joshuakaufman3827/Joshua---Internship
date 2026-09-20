@@ -18,16 +18,16 @@ const ExploreItemCard = ({ item }) => {
   return (
     <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 mb-4">
       <div className="nft__item">
+        
         {/* Author */}
-        <div className="author">
-          <div className="author_thumb">
-            <Link to={`/author/${item.authorId || item.author_id}`}>
-              <img
-                src={item.authorImage || item.author_image}
-                alt={item.authorName || item.author_name}
-              />
-            </Link>
-          </div>
+        <div className="author_list_pp">
+          <Link to={`/author/${item.authorId || item.author_id}`}>
+            <img
+              className="lazy"
+              src={item.authorImage || item.author_image}
+              alt=""
+            />
+          </Link>
         </div>
 
         {/* Countdown */}
@@ -38,7 +38,11 @@ const ExploreItemCard = ({ item }) => {
         {/* NFT Image */}
         <div className="nft__item_wrap">
           <Link to={`/item-details/${item.nftId || item.nft_id}`}>
-            <img src={item.nftImage || item.nft_image} alt={item.title} />
+            <img
+              src={item.nftImage || item.nft_image}
+              className="lazy nft__item_preview"
+              alt={item.title}
+            />
           </Link>
         </div>
 
@@ -48,16 +52,12 @@ const ExploreItemCard = ({ item }) => {
             <h4>{item.title}</h4>
           </Link>
 
-          <div className="d-flex justify-content-between align-items-center mt-2">
-            <div className="nft__item_price">{item.price} ETH</div>
-            <div className="nft__item_like">
-              <i className="fa fa-heart" /> {item.likes}
-            </div>
+          <div className="nft__item_price">
+            {item.price} ETH
           </div>
 
-          <div className="d-flex justify-content-between align-items-center mt-3">
-            <button className="btn btn-primary btn-sm">Buy Now</button>
-            <button className="btn btn-outline-secondary btn-sm">Share</button>
+          <div className="nft__item_like">
+            <i className="fa fa-heart"></i> {item.likes}
           </div>
         </div>
       </div>
@@ -66,3 +66,4 @@ const ExploreItemCard = ({ item }) => {
 };
 
 export default ExploreItemCard;
+
