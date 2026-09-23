@@ -66,11 +66,43 @@ function toggleFollow() {
     );
 
   if (loading || !author)
-    return (
-      <div className="container text-center">
-        <h2>Loading author...</h2>
+  return (
+    <div className="container py-5">
+
+      {/* Banner Skeleton */}
+      <div className="skeleton skeleton-banner mb-4"></div>
+
+      {/* Avatar + Name Skeleton */}
+      <div className="d-flex align-items-center mb-4">
+        <div className="skeleton skeleton-circle"></div>
+        <div className="ml-3" style={{ width: "200px" }}>
+          <div className="skeleton skeleton-text"></div>
+          <div className="skeleton skeleton-small-text"></div>
+        </div>
       </div>
-    );
+
+      {/* Followers Skeleton */}
+      <div className="skeleton skeleton-small-text" style={{ width: "120px" }}></div>
+
+      {/* Items Grid Skeleton */}
+      <div className="row mt-4">
+        {new Array(8).fill(0).map((_, index) => (
+          <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 mb-4" key={index}>
+            <div className="nft__item">
+              <div className="nft__item_wrap">
+                <div className="skeleton skeleton-img"></div>
+              </div>
+              <div className="nft__item_info">
+                <div className="skeleton skeleton-text"></div>
+                <div className="skeleton skeleton-small-text"></div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  );
 
   return (
     <div id="wrapper">
