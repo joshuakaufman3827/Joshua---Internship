@@ -10,20 +10,24 @@ const AuthorItems = ({ items, loading }) => {
   return (
     <div className="row">
       {loading ? (
-        <>
-          {new Array(9).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft__item">
-                <div className="nft__item_wrap">Loading...</div>
-                <div className="nft__item_info">
-                  Loading...
-                  <div className="nft__item_price">Loading price...</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </>
-      ) : (
+  <>
+    {new Array(9).fill(0).map((_, index) => (
+      <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+        <div className="nft__item">
+          <div className="nft__item_wrap">
+            <div className="skeleton skeleton-img"></div>
+          </div>
+
+          <div className="nft__item_info">
+            <div className="skeleton skeleton-title"></div>
+            <div className="skeleton skeleton-price"></div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </>
+) : (
+
         <>
           {items.map((item) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={item.nftId}
