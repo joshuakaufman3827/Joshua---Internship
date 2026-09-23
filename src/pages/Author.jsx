@@ -12,40 +12,41 @@ const Author = () => {
   const [error, setError] = useState(false);
 
   async function fetchAuthor() {
-    try {
-      const response = await fetch(
-        `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?authorId=${id}`
-      );
+  try {
+    const response = await fetch(
+  `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
+);
 
-      const data = await response.json();
 
-      const {
-        address,
-        authorID,
-        authorImage,
-        authorName,
-        followers,
-        tag,
-        nftCollection,
-      } = data;
+    const data = await response.json();
 
-      setAuthor({
-        address,
-        authorID,
-        authorImage,
-        authorName,
-        followers,
-        tag,
-      });
+    const {
+      address,
+      authorID,
+      authorImage,
+      authorName,
+      followers,
+      tag,
+      nftCollection,
+    } = data;
 
-      setAuthorItems(nftCollection);
-    } catch (err) {
-      console.log("Error fetching author:", err);
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
+    setAuthor({
+      address,
+      authorID,
+      authorImage,
+      authorName,
+      followers,
+      tag,
+    });
+
+    setAuthorItems(nftCollection);
+  } catch (err) {
+    console.log("Error fetching author:", err);
+    setError(true);
+  } finally {
+    setLoading(false);
   }
+}
 
   useEffect(() => {
     fetchAuthor();
@@ -101,11 +102,15 @@ const Author = () => {
                   </div>
 
                   <div className="profile_follow de-flex">
-                    <div className="de-flex-col">
-                      <div className="profile_follower">{author.followers} followers</div>
-                      <Link to="#" className="btn-main">Follow</Link>
-                    </div>
-                  </div>
+  <div className="de-flex-col">
+    <div className="profile_follower">{author.followers} followers</div>
+  </div>
+
+  <div className="de-flex-col">
+    <button className="btn-main" id="btn_follow">Follow</button>
+  </div>
+</div>
+
 
                 </div>
               </div>
