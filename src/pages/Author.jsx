@@ -10,7 +10,11 @@ const Author = () => {
   const [authorItems, setAuthorItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(false);
 
+function toggleFollow() {
+  setIsFollowing(prev => !prev);
+}
   async function fetchAuthor() {
   try {
     const response = await fetch(
@@ -101,15 +105,18 @@ const Author = () => {
                     </div>
                   </div>
 
-                  <div className="profile_follow de-flex">
+                 <div className="profile_follow de-flex">
   <div className="de-flex-col">
     <div className="profile_follower">{author.followers} followers</div>
   </div>
 
   <div className="de-flex-col">
-    <button className="btn-main" id="btn_follow">Follow</button>
+    <button className="btn-main" id="btn_follow" onClick={toggleFollow}>
+      {isFollowing ? "Unfollow" : "Follow"}
+    </button>
   </div>
 </div>
+
 
 
                 </div>

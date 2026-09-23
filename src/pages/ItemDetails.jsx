@@ -22,7 +22,7 @@ const ItemDetails = () => {
         setItem({
           title: data.title || `NFT Item #${id}`,
           description: data.description || "No description provided.",
-          image: data.nftImage || data.image,
+          image:  data.image,
           views: data.views ?? 0,
           likes: data.likes ?? 0,
           price: data.price ?? "—",
