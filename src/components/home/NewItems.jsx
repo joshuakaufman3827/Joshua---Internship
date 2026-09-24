@@ -249,20 +249,21 @@ const NewItems = () => {
 
                           {it.endsAt ? <Countdown end={it.endsAt} /> : null}
 
-                          <div className="nft__item_wrap">
-                            <Link to={`/item-details/${it.id}`}>
-                              <img
-                                src={it.nftImage}
-                                className="lazy nft__item_preview"
-                                alt=""
-                              />
-                            </Link>
-                          </div>
+                         <div className="nft__item_wrap">
+  <Link to={`/item/${it.id}`}>
+    <img
+      src={it.nftImage}
+      className="lazy nft__item_preview"
+      alt=""
+    />
+  </Link>
+</div>
 
-                          <div className="nft__item_info">
-                            <Link to={`/item-details/${it.id}`}>
-                              <h4>{it.title}</h4>
-                            </Link>
+<div className="nft__item_info">
+  <Link to={`/item/${it.id}`}>
+    <h4>{it.title}</h4>
+  </Link>
+
                             <div className="nft__item_price">
                               {it.eth} ETH
                             </div>

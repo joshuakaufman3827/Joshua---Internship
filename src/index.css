@@ -277,6 +277,30 @@
   flex-Direction: column;
 }
 
+.item-details-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.item-details-image img {
+  width: 450px;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.item-details-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
 
 
 
