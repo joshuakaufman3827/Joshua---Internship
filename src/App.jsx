@@ -14,8 +14,11 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/author/:id" element={<Author />} />
+        <Route path="/author/:authorId" element={<Author />} />
+        
+        {/* Supporting both path formats prevents white-page routing mismatches */}
         <Route path="/item/:id" element={<ItemDetails />} />
-
+        <Route path="/item-details/:id" element={<ItemDetails />} />
       </Routes>
       <Footer />
     </Router>

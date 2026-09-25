@@ -2,26 +2,32 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 
 const ItemDetails = () => {
-  const { id } = useParams();
+  const params = useParams();
+  const id = params.nftId || params.id || params.itemId;
+
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
+    if (!id) {
+      setLoading(false);
+      return;
+    }
+
     const loadItem = async () => {
       try {
         const res = await fetch(
-          `https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${id || "17914494"}`
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${id}`
         );
 
         if (!res.ok) throw new Error("Network response was not ok");
 
         const data = await res.json();
 
-        // Fixed mapping matching exact API field names
         setItem({
-          id: data.id,
+          id: data.id || id,
           title: data.title ?? `NFT Item #${id}`,
           description: data.description ?? "No description provided.",
           tag: data.tag ?? null,
@@ -31,7 +37,7 @@ const ItemDetails = () => {
           price: data.price ?? "—",
           expiry: data.expiryDate ?? null,
 
-          // FIX IS HERE: use data.ownerName and data.creatorName
+          // API Key Fixes: ownerName and creatorName
           ownerName: data.ownerName ?? "Unknown Owner",
           ownerImage: data.ownerImage,
           ownerId: data.ownerId ?? null,
@@ -42,23 +48,7 @@ const ItemDetails = () => {
         });
       } catch (err) {
         console.error("Fetch error:", err);
-
-        // Fallback so UI never breaks
-        setItem({
-          id,
-          title: `NFT Item #${id}`,
-          description: "No description available.",
-          image: "https://via.placeholder.com/400",
-          views: 0,
-          likes: 0,
-          price: "—",
-          ownerName: "Unknown Owner",
-          ownerImage: "https://via.placeholder.com/50",
-          ownerId: null,
-          creatorName: "Unknown Creator",
-          creatorImage: "https://via.placeholder.com/50",
-          creatorId: null,
-        });
+        setItem(null);
       } finally {
         setLoading(false);
       }
@@ -67,77 +57,28 @@ const ItemDetails = () => {
     loadItem();
   }, [id]);
 
-  // ---------------------------------------------------------
-  // SAFE SKELETON LOADER
-  // ---------------------------------------------------------
   if (loading) {
     return (
       <div className="container" style={{ padding: "100px 20px" }}>
         <div className="row">
-          {/* LEFT IMAGE SKELETON */}
           <div className="col-md-6 text-center">
             <div
               className="skeleton-box"
-              style={{
-                width: "100%",
-                height: "400px",
-                borderRadius: "10px",
-              }}
+              style={{ width: "100%", height: "400px", borderRadius: "10px" }}
             ></div>
           </div>
-
-          {/* RIGHT DETAILS SKELETON */}
           <div className="col-md-6">
             <div
               className="skeleton-box"
               style={{ width: "60%", height: "30px", marginBottom: "20px" }}
             ></div>
-
             <div
               className="skeleton-box"
               style={{ width: "40%", height: "20px", marginBottom: "20px" }}
             ></div>
-
             <div
               className="skeleton-box"
               style={{ width: "100%", height: "80px", marginBottom: "30px" }}
-            ></div>
-
-            <div className="d-flex align-items-center mb-4">
-              <div
-                className="skeleton-box"
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "50%",
-                  marginRight: "10px",
-                }}
-              ></div>
-              <div
-                className="skeleton-box"
-                style={{ width: "120px", height: "20px" }}
-              ></div>
-            </div>
-
-            <div className="d-flex align-items-center mb-4">
-              <div
-                className="skeleton-box"
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "50%",
-                  marginRight: "10px",
-                }}
-              ></div>
-              <div
-                className="skeleton-box"
-                style={{ width: "120px", height: "20px" }}
-              ></div>
-            </div>
-
-            <div
-              className="skeleton-box"
-              style={{ width: "80px", height: "30px" }}
             ></div>
           </div>
         </div>
@@ -145,9 +86,14 @@ const ItemDetails = () => {
     );
   }
 
-  // ---------------------------------------------------------
-  // MAIN ITEM DETAILS RENDER
-  // ---------------------------------------------------------
+  if (!item) {
+    return (
+      <div className="container text-center" style={{ padding: "100px 20px" }}>
+        <h3>Item details could not be loaded.</h3>
+      </div>
+    );
+  }
+
   return (
     <div style={{ padding: "100px 20px", minHeight: "60vh" }}>
       <div className="container">
