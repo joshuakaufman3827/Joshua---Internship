@@ -12,14 +12,14 @@ const ItemDetails = () => {
     const loadItem = async () => {
       try {
         const res = await fetch(
-          `https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${id}`
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${id || "17914494"}`
         );
 
         if (!res.ok) throw new Error("Network response was not ok");
 
         const data = await res.json();
 
-        // Accurate mapping based on actual API fields
+        // Fixed mapping matching exact API field names
         setItem({
           id: data.id,
           title: data.title ?? `NFT Item #${id}`,
@@ -29,13 +29,14 @@ const ItemDetails = () => {
           views: data.views ?? 0,
           likes: data.likes ?? 0,
           price: data.price ?? "—",
-          expiry: data.expiry ?? null,
+          expiry: data.expiryDate ?? null,
 
-          ownerName: data.owner ?? "Unknown Owner",
+          // FIX IS HERE: use data.ownerName and data.creatorName
+          ownerName: data.ownerName ?? "Unknown Owner",
           ownerImage: data.ownerImage,
           ownerId: data.ownerId ?? null,
 
-          creatorName: data.creator ?? "Unknown Creator",
+          creatorName: data.creatorName ?? "Unknown Creator",
           creatorImage: data.creatorImage,
           creatorId: data.creatorId ?? null,
         });
@@ -67,13 +68,12 @@ const ItemDetails = () => {
   }, [id]);
 
   // ---------------------------------------------------------
-  // SAFE SKELETON LOADER (NO ERRORS, NO STYLE TAGS)
+  // SAFE SKELETON LOADER
   // ---------------------------------------------------------
   if (loading) {
     return (
       <div className="container" style={{ padding: "100px 20px" }}>
         <div className="row">
-
           {/* LEFT IMAGE SKELETON */}
           <div className="col-md-6 text-center">
             <div
@@ -88,7 +88,6 @@ const ItemDetails = () => {
 
           {/* RIGHT DETAILS SKELETON */}
           <div className="col-md-6">
-
             <div
               className="skeleton-box"
               style={{ width: "60%", height: "30px", marginBottom: "20px" }}
@@ -153,7 +152,6 @@ const ItemDetails = () => {
     <div style={{ padding: "100px 20px", minHeight: "60vh" }}>
       <div className="container">
         <div className="row">
-
           {/* LEFT IMAGE */}
           <div className="col-md-6 text-center">
             <img
@@ -220,7 +218,6 @@ const ItemDetails = () => {
               <h6>Price</h6>
               <h4>{item.price} ETH</h4>
             </div>
-
           </div>
         </div>
       </div>
