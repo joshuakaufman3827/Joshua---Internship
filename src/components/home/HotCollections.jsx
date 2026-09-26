@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import AOS from "aos"; 
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -99,7 +100,12 @@ const HotCollections = () => {
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
     )
       .then((res) => res.json())
-      .then((data) => setCollections(data))
+      .then((data) => {
+        setCollections(data);
+        setTimeout(() => {
+          AOS.refresh();
+        }, 100);
+      })
       .catch((err) =>
         console.error("Error fetching collections:", err)
       );
@@ -119,7 +125,7 @@ const HotCollections = () => {
   };
 
   return (
-    <section id="section-collections" className="no-bottom">
+    <section id="section-collections" className="no-bottom" data-aos="fade-up">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -166,11 +172,11 @@ const HotCollections = () => {
                     </div>
 
                     <div className="nft_coll_info">
-                    <Link to="/explore">
-                       <h4>{item.title}</h4>
-                   </Link>
-                     <span>ERC-{item.code}</span>
-                   </div>
+                      <Link to="/explore">
+                        <h4>{item.title}</h4>
+                      </Link>
+                      <span>ERC-{item.code}</span>
+                    </div>
                   </div>
                 </div>
               ))}
