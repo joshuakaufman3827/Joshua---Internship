@@ -12,26 +12,26 @@ const Explore = () => {
   };
 
   return (
+    // Keep the main outer div clean without data-aos
     <div className="explore">
       {/* Subheader */}
-      <section className="jumbotron breadcumb no-bg">
+      <section className="jumbotron breadcumb no-bg" data-aos="fade-up">
         <div className="mainbreadcumb">
           <img src={SubHeader} alt="Subheader" />
           <h1 className="text-center">Explore</h1>
         </div>
       </section>
 
-      {/* Filters */}
-      <section className="container">
+      {/* Filters & Items */}
+      <section className="container" data-aos="fade-up">
         <div className="row mb-4">
           <div className="col-md-3">
-          <select className="form-select" onChange={handleFilterChange}>
-           <option value="">Default</option>
-           <option value="price_low_to_high">Price: Low to High</option>
-           <option value="price_high_to_low">Price: High to Low</option>
-           <option value="likes_high_to_low">Likes: High to Low</option>
-         </select>
-
+            <select className="form-select" onChange={handleFilterChange}>
+              <option value="">Default</option>
+              <option value="price_low_to_high">Price: Low to High</option>
+              <option value="price_high_to_low">Price: High to Low</option>
+              <option value="likes_high_to_low">Likes: High to Low</option>
+            </select>
           </div>
         </div>
 

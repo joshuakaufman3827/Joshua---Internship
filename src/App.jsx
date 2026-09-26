@@ -7,16 +7,16 @@ import ItemDetails from "./pages/ItemDetails";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 
-// 2. Import AOS JavaScript and CSS
+
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 function App() {
-  // 3. Initialize AOS when the component mounts
+
   useEffect(() => {
     AOS.init({
-      duration: 1000, // global duration in milliseconds
-      once: true,     // whether animation should happen only once
+      duration: 1000, 
+      once: true,     
     });
   }, []);
 
