@@ -166,11 +166,11 @@ const HotCollections = () => {
                     </div>
 
                     <div className="nft_coll_info">
-                      <Link to="/explore">
-                        <h4>{item.title}</h4>
-                      </Link>
-                      <span>{item.code}</span>
-                    </div>
+                    <Link to="/explore">
+                       <h4>{item.title}</h4>
+                   </Link>
+                     <span>ERC-{item.code}</span>
+                   </div>
                   </div>
                 </div>
               ))}
