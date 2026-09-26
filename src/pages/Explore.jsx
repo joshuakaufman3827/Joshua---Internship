@@ -35,11 +35,12 @@ const Explore = () => {
       <section className="container">
         <div className="row mb-4">
           <div className="col-md-3">
-            <select className="form-select" onChange={handleFilterChange}>
+            <select className="form-select" onChange={handleFilterChange} value={filter}>
               <option value="">Default</option>
               <option value="price_low_to_high">Price: Low to High</option>
               <option value="price_high_to_low">Price: High to Low</option>
-              <option value="likes_high_to_low">Likes: High to Low</option>
+              {/* Corrected option value below */}
+              <option value="likes_high_to_low">Likes: Most Liked</option>
             </select>
           </div>
         </div>
