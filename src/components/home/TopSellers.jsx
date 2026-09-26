@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import AOS from "aos";
 
 const TopSellers = () => {
   const [sellers, setSellers] = useState([]);
@@ -17,6 +18,9 @@ const TopSellers = () => {
         console.error("Error fetching top sellers:", error);
       } finally {
         setLoading(false);
+        setTimeout(() => {
+          AOS.refreshHard();
+        }, 150);
       }
     };
 
@@ -32,7 +36,7 @@ const TopSellers = () => {
             <div className="small-border bg-color-2"></div>
           </div>
 
-          <div className="col-md-12">
+          <div className="col-md-12" data-aos="fade-up">
             <ol className="author_list">
               {loading
                 ? new Array(12).fill(0).map((_, index) => (
@@ -65,7 +69,6 @@ const TopSellers = () => {
                   ))
                 : Array.isArray(sellers) &&
                   sellers.map((seller) => {
-                    // Fallback check to ensure the ID is never undefined
                     const authorId = seller.authorId || seller.id;
 
                     return (

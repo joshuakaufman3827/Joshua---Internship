@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import AOS from "aos"; // 1. Import AOS
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 
 const NextArrow = ({ onClick }) => {
   const timerRef = useRef(null);
@@ -72,7 +72,6 @@ const PrevArrow = ({ onClick }) => {
   );
 };
 
-
 const Countdown = React.memo(function Countdown({ end }) {
   const [timeLeft, setTimeLeft] = useState(() => calc(end));
 
@@ -120,7 +119,6 @@ function calc(endTs) {
   };
 }
 
-
 const SkeletonCard = () => (
   <div className="nft__item">
     <div className="author_list_pp">
@@ -135,7 +133,6 @@ const SkeletonCard = () => (
     </div>
   </div>
 );
-
 
 const NewItems = () => {
   const [items, setItems] = useState([]);
@@ -171,12 +168,15 @@ const NewItems = () => {
           };
         });
 
-
         await new Promise((resolve) => setTimeout(resolve, 1500));
 
         if (isMounted) {
           setItems(mapped);
           setLoading(false);
+          // 2. Call refreshHard inside a short timeout so AOS re-scans the new slider DOM
+          setTimeout(() => {
+            AOS.refreshHard();
+          }, 150);
         }
       } catch (err) {
         console.error("NewItems fetch error:", err);
@@ -210,6 +210,7 @@ const NewItems = () => {
   };
 
   return (
+    // Clean section without data-aos
     <section id="section-items" className="no-bottom">
       <div className="container">
         <div className="row">
@@ -220,6 +221,7 @@ const NewItems = () => {
         </div>
 
         {loading ? (
+          // Skeleton container has NO data-aos attribute
           <div className="row">
             {[0, 1, 2, 3].map((i) => (
               <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={i}>
@@ -228,7 +230,8 @@ const NewItems = () => {
             ))}
           </div>
         ) : (
-          <div className="row">
+          // 3. Attach data-aos ONLY to the real slider container
+          <div className="row" data-aos="fade-up">
             <div className="col-12">
               <div className="slider-wrapper">
                 <Slider key={items.length} {...settings}>
@@ -237,32 +240,32 @@ const NewItems = () => {
                       <div className="slide-item">
                         <div className="nft__item">
                           <div className="author_list_pp">
-  <Link to={`/author/${it.authorId}`}>
-    <img
-      className="lazy"
-      src={it.authorImage}
-      alt=""
-    />
-    <i className="fa fa-check" />
-  </Link>
-</div>
+                            <Link to={`/author/${it.authorId}`}>
+                              <img
+                                className="lazy"
+                                src={it.authorImage}
+                                alt=""
+                              />
+                              <i className="fa fa-check" />
+                            </Link>
+                          </div>
 
                           {it.endsAt ? <Countdown end={it.endsAt} /> : null}
 
-                         <div className="nft__item_wrap">
-  <Link to={`/item/${it.id}`}>
-    <img
-      src={it.nftImage}
-      className="lazy nft__item_preview"
-      alt=""
-    />
-  </Link>
-</div>
+                          <div className="nft__item_wrap">
+                            <Link to={`/item/${it.id}`}>
+                              <img
+                                src={it.nftImage}
+                                className="lazy nft__item_preview"
+                                alt=""
+                              />
+                            </Link>
+                          </div>
 
-<div className="nft__item_info">
-  <Link to={`/item/${it.id}`}>
-    <h4>{it.title}</h4>
-  </Link>
+                          <div className="nft__item_info">
+                            <Link to={`/item/${it.id}`}>
+                              <h4>{it.title}</h4>
+                            </Link>
 
                             <div className="nft__item_price">
                               {it.eth} ETH
@@ -287,7 +290,6 @@ const NewItems = () => {
 };
 
 export default NewItems;
-
 
 
 
