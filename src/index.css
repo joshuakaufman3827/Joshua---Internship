@@ -366,6 +366,16 @@
   margin-top: 4px;
 }
 
+.de_countdown {
+  border: 2px solid #8364e2 !important;
+  background-color: #ffffff !important;
+  border-radius: 30px !important;
+  padding: 2px 12px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #222222 !important;
+}
+
 
 
 
