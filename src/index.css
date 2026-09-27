@@ -300,6 +300,82 @@
   gap: 1rem;
 }
 
+/* Author Header Layout & Spacing */
+.d_profile {
+  display: flex !important;
+  align-items: center;
+}
+
+.d_profile .de-flex-col {
+  display: flex !important;
+  align-items: center;
+  gap: 20px; /* Adds space between circular avatar and name description */
+}
+
+/* Circular Avatar Container */
+.d_profile_avatar {
+  position: relative !important;
+  display: inline-block !important;
+  flex-shrink: 0;
+}
+
+.d_profile_avatar img {
+  width: 150px !important;
+  height: 150px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+}
+
+/* Purple Badge & Checkmark Icon */
+.d_profile_avatar i {
+  position: absolute !important;
+  bottom: 10px !important;
+  right: 5px !important;
+  background-color: #8364e2 !important;
+  color: #ffffff !important;
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 14px !important;
+  z-index: 2 !important;
+}
+
+/* Author Name & Info Block */
+.d_profile_name {
+  display: flex;
+  flex-direction: column;
+}
+
+.d_profile_name h4 {
+  margin-bottom: 0;
+}
+
+.d_profile_name .profile_username {
+  display: block;
+  color: #8364e2;
+  margin-top: 2px;
+}
+
+.d_profile_name .profile_wallet {
+  display: block;
+  font-size: 14px;
+  color: #727272;
+  margin-top: 4px;
+}
+
+.de_countdown {
+  border: 2px solid #8364e2 !important;
+  background-color: #ffffff !important;
+  border-radius: 30px !important;
+  padding: 2px 12px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #222222 !important;
+}
+
 
 
 

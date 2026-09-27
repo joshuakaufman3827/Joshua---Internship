@@ -113,8 +113,6 @@ const HotCollections = () => {
 
   const settings = {
     infinite: true,
-    centerMode: true,
-    centerPadding: "0px",
     slidesToShow: 4,
     slidesToScroll: 1,
     speed: 500,
@@ -122,6 +120,26 @@ const HotCollections = () => {
     touchMove: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 576,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -148,7 +166,7 @@ const HotCollections = () => {
           <div className="row">
             <Slider {...settings}>
               {collections.map((item) => (
-                <div key={item.id}>
+                <div key={item.id} className="px-2">
                   <div className="nft_coll">
                     <div className="nft_wrap">
                       <Link to={`/item-details/${item.nftId}`}>
@@ -160,7 +178,7 @@ const HotCollections = () => {
                       </Link>
                     </div>
 
-                    <div className="nft_coll_pp">
+                    <div className="nft_coll_pp" style={{ position: "relative" }}>
                       <Link to={`/author/${item.authorId}`}>
                         <img
                           className="lazy pp-coll"
@@ -168,7 +186,35 @@ const HotCollections = () => {
                           alt={item.title}
                         />
                       </Link>
-                      <i className="fa fa-check"></i>
+                      <div
+                        style={{
+                          position: "absolute",
+                          right: "0px",
+                          bottom: "0px",
+                          backgroundColor: "#8364e2",
+                          color: "#ffffff",
+                          borderRadius: "50%",
+                          width: "18px",
+                          height: "18px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          zIndex: 10,
+                        }}
+                      >
+                        <svg
+                          width="10"
+                          height="10"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                      </div>
                     </div>
 
                     <div className="nft_coll_info">
@@ -189,7 +235,6 @@ const HotCollections = () => {
 };
 
 export default HotCollections;
-
 
 
 

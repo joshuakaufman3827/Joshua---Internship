@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+import AuthorBanner from "../images/author_banner.jpg";
 
 const Author = () => {
   const params = useParams();
@@ -77,9 +78,12 @@ const Author = () => {
           aria-label="section"
           className="text-light"
           style={{
-            background: `url(${author.authorBanner || "/images/author_banner.jpg"}) center`,
+            backgroundImage: `url(${author.authorBanner || author.banner || AuthorBanner})`,
+            backgroundPosition: "center",
             backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
             minHeight: "250px",
+            width: "100%",
           }}
         ></section>
 
@@ -90,24 +94,59 @@ const Author = () => {
               <div className="col-md-12">
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
-                    <div className="profile_avatar">
+                    {/* CIRCULAR AVATAR CONTAINER */}
+                    <div className="d_profile_avatar" style={{ position: "relative", display: "inline-block" }}>
                       <img
+                        id="author_img"
                         src={author.authorImage || "/images/author_thumbnail.jpg"}
                         alt={authorName}
+                        style={{
+                          width: "150px",
+                          height: "150px",
+                          borderRadius: "100%",
+                          objectFit: "cover",
+                        }}
                       />
-                      <i className="fa fa-check"></i>
-                      <div className="profile_name">
-                        <h4>
-                          {authorName}
-                          <span className="profile_username">@{username}</span>
-                          <span id="wallet" className="profile_wallet">
-                            {author.address}
-                          </span>
-                        </h4>
-                      </div>
+                      <i
+                        className="fa fa-check"
+                        style={{
+                          position: "absolute",
+                          bottom: "10px",
+                          right: "5px",
+                          backgroundColor: "#8364e2",
+                          color: "#fff",
+                          padding: "6px",
+                          borderRadius: "50%",
+                          fontSize: "12px",
+                          width: "24px",
+                          height: "24px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      ></i>
+                    </div>
+
+                    {/* AUTHOR DETAILS */}
+                    <div className="d_profile_name">
+                      <h4>
+                        {authorName}
+                        <span className="profile_username">@{username}</span>
+                        <span id="wallet" className="profile_wallet">
+                          {author.address}
+                        </span>
+                        <button
+                          id="btn_copy"
+                          title="Copy Text"
+                          style={{ marginLeft: "10px" }}
+                        >
+                          Copy
+                        </button>
+                      </h4>
                     </div>
                   </div>
 
+                  {/* FOLLOWERS & FOLLOW BUTTON */}
                   <div className="profile_follow de-flex-col">
                     <div className="de-flex-col">
                       <div className="profile_follower">
@@ -189,8 +228,6 @@ const Author = () => {
 };
 
 export default Author;
-
-
 
 
 

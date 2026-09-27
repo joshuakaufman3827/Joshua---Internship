@@ -8,7 +8,6 @@ const Explore = () => {
   const [filter, setFilter] = useState("");
   const { items, loading, visibleCount, showMore } = useExploreItems(filter);
 
-  // Refresh AOS whenever data finishes loading or filter changes
   useEffect(() => {
     if (!loading) {
       setTimeout(() => {
@@ -23,11 +22,22 @@ const Explore = () => {
 
   return (
     <div className="explore">
-      {/* Subheader Header */}
-      <section className="jumbotron breadcumb no-bg" data-aos="fade-up">
-        <div className="mainbreadcumb">
-          <img src={SubHeader} alt="Subheader" />
-          <h1 className="text-center">Explore</h1>
+      {/* Subheader Header with background image */}
+      <section
+        id="subheader"
+        className="text-light"
+        style={{ background: `url(${SubHeader}) center top / cover no-repeat` }}
+        data-aos="fade-up"
+      >
+        <div className="center-y relative text-center">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12 text-center">
+                <h1>Explore</h1>
+              </div>
+              <div className="clearfix"></div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -35,11 +45,14 @@ const Explore = () => {
       <section className="container">
         <div className="row mb-4">
           <div className="col-md-3">
-            <select className="form-select" onChange={handleFilterChange} value={filter}>
+            <select
+              className="form-select"
+              onChange={handleFilterChange}
+              value={filter}
+            >
               <option value="">Default</option>
               <option value="price_low_to_high">Price: Low to High</option>
               <option value="price_high_to_low">Price: High to Low</option>
-              {/* Corrected option value below */}
               <option value="likes_high_to_low">Likes: Most Liked</option>
             </select>
           </div>
@@ -60,4 +73,3 @@ const Explore = () => {
 };
 
 export default Explore;
-

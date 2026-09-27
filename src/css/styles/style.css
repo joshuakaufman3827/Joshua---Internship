@@ -16751,3 +16751,17 @@ img {
   border-radius: 6px;
 }
 
+/* Reduce spacing inside Hot Collections cards */
+.nft_coll {
+  margin-bottom: 10px !important;
+  padding-bottom: 15px !important;
+}
+
+.nft_coll_pp {
+  margin-top: -30px !important; /* Pulls author avatar closer to top image */
+  margin-bottom: 10px !important;
+}
+
+.nft_coll_info h4 {
+  margin-bottom: 2px !important; /* Reduces gap between title and ERC code */
+}
